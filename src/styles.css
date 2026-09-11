@@ -147,3 +147,42 @@
     background-size: 3px 3px;
   }
 }
+
+/* Vertical testimonial marquee */
+@keyframes marquee-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@utility marquee-up {
+  animation: marquee-up var(--marquee-duration, 40s) linear infinite;
+}
+
+@utility marquee-down {
+  animation: marquee-down var(--marquee-duration, 40s) linear infinite;
+}
+
+.marquee-area:hover .marquee-up,
+.marquee-area:hover .marquee-down {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-up,
+  .marquee-down {
+    animation: none;
+  }
+}
