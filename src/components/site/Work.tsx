@@ -14,7 +14,7 @@ const PROJECTS = [
   { img: w3, title: "Office Lobby", tag: "Commercial", span: "" },
   { img: w4, title: "Stair Runner", tag: "Carpet", span: "" },
   { img: w5, title: "Open Plan Oak", tag: "Installation", span: "" },
-  { img: w6, title: "Carpet Texture", tag: "Materials", span: "lg:col-span-2" },
+  { img: w6, title: "Carpet Texture", tag: "Materials", span: "sm:col-span-2 lg:col-span-4" },
 ];
 
 export function Work() {
