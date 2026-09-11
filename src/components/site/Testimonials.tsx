@@ -12,7 +12,9 @@ const SLOTS: Slot[] = [
   { id: "06", name: "Your name here", location: "Your city", initials: "JD" },
 ];
 
-const COLUMNS: Slot[][] = [SLOTS.slice(0, 2), SLOTS.slice(2, 4), SLOTS.slice(4, 6)];
+const COL_A: Slot[] = SLOTS.slice(0, 2);
+const COL_B: Slot[] = SLOTS.slice(2, 4);
+const COL_C: Slot[] = SLOTS.slice(4, 6);
 
 function Card({ slot }: { slot: Slot }) {
   return (
