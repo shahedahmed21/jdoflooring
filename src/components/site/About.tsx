@@ -25,17 +25,17 @@ export function About() {
             initial="hidden"
             whileInView="show"
             viewport={viewportOnce}
-            className="relative aspect-4/5 overflow-hidden"
+            className="relative aspect-4/5 overflow-hidden rounded-3xl border border-ink/10 shadow-[var(--shadow-elegant)]"
           >
             <motion.img
               src={aboutImg}
               alt="Installer fitting a wide plank of oak flooring by hand"
               width={1200}
               height={1504}
-              loading="lazy"
               style={{ y: imgY }}
               className="size-full scale-110 object-cover"
             />
+            <span className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-warm-white/10" />
           </motion.div>
           <motion.div
             initial={{ scaleX: 0 }}

@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { EASE, viewportOnce } from "@/lib/motion";
 import { MaskedHeading, Reveal } from "./Reveal";
 
@@ -27,11 +27,6 @@ const STEPS = [
 ];
 
 export function Process() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 26, mass: 0.6 });
-  const height = useTransform(progress, [0, 1], ["0%", "100%"]);
-
   return (
     <section id="process" className="relative bg-cream py-24 text-ink md:py-36">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
@@ -42,54 +37,57 @@ export function Process() {
           lines={["From first visit", "to final walk-through."]}
           className="display-hero mt-6 max-w-[18ch] text-[clamp(2rem,5vw,4.25rem)] text-ink"
         />
+      </div>
 
-        <div ref={ref} className="relative mt-20 pl-12 md:pl-24">
-          <div className="absolute left-[7px] top-0 h-full w-px bg-ink/12 md:left-[15px]" />
-          <motion.div
-            style={{ height }}
-            className="absolute left-[7px] top-0 w-px bg-ink md:left-[15px]"
-          />
-
-          <div className="flex flex-col gap-16 md:gap-24">
+      <div className="relative mt-16 md:mt-20">
+        <div className="overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="mx-auto flex min-w-max max-w-[1400px] items-stretch gap-0 px-6 md:min-w-0 md:px-10">
             {STEPS.map((s, i) => (
-              <motion.div
-                key={s.n}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.6 }}
-                transition={{ duration: 0.9, ease: EASE }}
-                className="group relative"
-              >
-                <motion.span
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
-                  className="absolute -left-12 top-2 size-[15px] rounded-full border border-ink bg-cream md:-left-24 md:size-8"
+              <div key={s.n} className="flex items-stretch">
+                <motion.div
+                  initial={{ opacity: 0, y: 36 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.9, ease: EASE, delay: i * 0.12 }}
+                  className="group w-[74vw] max-w-[320px] rounded-2xl border border-ink/12 bg-cream-deep/40 p-7 transition-colors duration-500 hover:border-ink/30 sm:w-[42vw] md:w-auto md:flex-1 md:max-w-none"
                 >
-                  <span className="absolute inset-1.5 hidden rounded-full bg-ink transition-transform duration-500 group-hover:scale-110 md:block" />
-                </motion.span>
-
-                <div className="flex flex-col gap-4 md:flex-row md:items-baseline md:gap-12">
-                  <span className="font-display text-5xl font-light text-ink/25 transition-colors duration-500 group-hover:text-gold md:text-6xl">
-                    {s.n}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-3xl text-ink md:text-4xl">{s.title}</h3>
-                    <p className="mt-3 max-w-md text-sm leading-relaxed text-ink/65">{s.copy}</p>
+                  <div className="flex items-center gap-4">
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-ink/25 font-display text-lg text-ink transition-colors duration-500 group-hover:border-gold group-hover:text-gold">
+                      {s.n}
+                    </span>
+                    <span className="h-px flex-1 bg-ink/15" />
                   </div>
-                </div>
-              </motion.div>
+                  <h3 className="mt-6 font-display text-2xl leading-tight text-ink md:text-3xl">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/65">{s.copy}</p>
+                </motion.div>
+
+                {i < STEPS.length - 1 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={viewportOnce}
+                    transition={{ duration: 0.8, ease: EASE, delay: 0.2 + i * 0.12 }}
+                    className="flex w-8 shrink-0 items-center justify-center md:w-10"
+                    aria-hidden
+                  >
+                    <ArrowRight className="size-4 text-ink/35" strokeWidth={1.2} />
+                  </motion.div>
+                )}
+              </div>
             ))}
           </div>
         </div>
+      </div>
 
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={viewportOnce}
           transition={{ duration: 1.4, ease: EASE }}
-          className="mt-24 h-px origin-left bg-ink/15"
+          className="mt-20 h-px origin-left bg-ink/15"
         />
       </div>
     </section>

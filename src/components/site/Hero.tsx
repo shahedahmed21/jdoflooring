@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import heroImg from "@/assets/hero-floor.jpg";
+import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 import { EASE } from "@/lib/motion";
 import { SITE } from "@/lib/site";
 
@@ -18,16 +19,24 @@ export function Hero() {
 
   return (
     <section id="top" ref={ref} className="relative min-h-[100svh] overflow-hidden grain-overlay">
-      <motion.div className="absolute inset-0" style={{ y, scale }}>
-        <motion.img
-          src={heroImg}
-          alt="Warm oak hardwood flooring in a softly lit luxury living room"
-          width={1920}
-          height={1200}
+      <motion.div
+        className="absolute inset-0"
+        style={{ y, scale }}
+        initial={{ scale: 1.14, opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2.2, ease: EASE }}
+      >
+        <video
           className="size-full object-cover"
-          initial={{ scale: 1.18, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.2, ease: EASE }}
+          src={heroVideo.url}
+          poster={heroImg}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          tabIndex={-1}
         />
       </motion.div>
       <motion.div className="absolute inset-0 bg-ink" style={{ opacity: overlay }} />
