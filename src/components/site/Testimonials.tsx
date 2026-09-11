@@ -89,12 +89,12 @@ export function Testimonials() {
               className="grid h-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
               style={{ transform: "rotateX(9deg) rotateZ(-2deg)", transformStyle: "preserve-3d" }}
             >
-              <Column slots={COLUMNS[0]} reverse={false} duration={38} />
+              <Column slots={COL_A} reverse={false} duration={38} />
               <div className="hidden sm:block h-full">
-                <Column slots={COLUMNS[1]} reverse duration={46} />
+                <Column slots={COL_B} reverse duration={46} />
               </div>
               <div className="hidden lg:block h-full">
-                <Column slots={COLUMNS[2]} reverse={false} duration={42} />
+                <Column slots={COL_C} reverse={false} duration={42} />
               </div>
             </div>
 
