@@ -39,17 +39,17 @@ export function Process() {
         />
       </div>
 
-      <div className="relative mt-16 md:mt-20">
-        <div className="overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="mx-auto flex min-w-max max-w-[1400px] items-stretch gap-0 px-6 md:min-w-0 md:px-10">
+      <div className="relative mt-12 md:mt-20">
+        <div className="overflow-visible md:overflow-x-auto md:pb-4 md:[-ms-overflow-style:none] md:[scrollbar-width:none] md:[&::-webkit-scrollbar]:hidden">
+          <div className="mx-auto flex max-w-[1400px] flex-col items-stretch px-6 md:min-w-0 md:flex-row md:gap-0 md:px-10">
             {STEPS.map((s, i) => (
-              <div key={s.n} className="flex items-stretch">
+              <div key={s.n} className="flex min-w-0 flex-col items-stretch md:flex-row">
                 <motion.div
                   initial={{ opacity: 0, y: 36 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.9, ease: EASE, delay: i * 0.12 }}
-                  className="group w-[74vw] max-w-[320px] rounded-2xl border border-ink/12 bg-cream-deep/40 p-7 transition-colors duration-500 hover:border-ink/30 sm:w-[42vw] md:w-auto md:flex-1 md:max-w-none"
+                  className="group w-full min-w-0 rounded-2xl border border-ink/12 bg-cream-deep/40 p-6 transition-colors duration-500 hover:border-ink/30 sm:p-7 md:w-auto md:flex-1 md:max-w-none"
                 >
                   <div className="flex items-center gap-4">
                     <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-ink/25 font-display text-lg text-ink transition-colors duration-500 group-hover:border-gold group-hover:text-gold">
@@ -69,10 +69,10 @@ export function Process() {
                     whileInView={{ opacity: 1 }}
                     viewport={viewportOnce}
                     transition={{ duration: 0.8, ease: EASE, delay: 0.2 + i * 0.12 }}
-                    className="flex w-8 shrink-0 items-center justify-center md:w-10"
+                    className="flex h-10 shrink-0 items-center justify-center md:h-auto md:w-10"
                     aria-hidden
                   >
-                    <ArrowRight className="size-4 text-ink/35" strokeWidth={1.2} />
+                    <ArrowRight className="size-4 rotate-90 text-ink/35 md:rotate-0" strokeWidth={1.2} />
                   </motion.div>
                 )}
               </div>
